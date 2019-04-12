@@ -1,0 +1,41 @@
+How it works: This tool works at a high level by copying students source into my source then building the file
+              and running unit tests. I have also built in functionality to weight different problems on the homework
+              differently and automatically calculate a score.
+
+Scripts you may have to download: enscript, ps2pdf
+
+How to use various scripts:
+
+Run all scripts from within the scripts folder! There are relative commands in that won't work otherwise.
+
+Init.sh: Ignore this one
+
+InitHWDir.sh: This script creates a directory for a homework. It expects two arguments first the name for the 
+              directory and second the path to the zip file containing the homeworks. It will then create all
+              of the necessary folders within this directory. It also cleans up bad characters out of filen names
+              this was because I was uploading the homeworks to MOSS (an anti cheat tool).
+              Example usage: ./InitHWDir.sh Homework1 Homework1.zip
+
+CleanSource.sh: This script takes out module and import statements from students homework. This is because my tool
+                works by copying students source into my source file then building and runnning unit tests on it.
+                Thus I don't want module or import statements. Thus it can sometimes break if I don't have an import
+                that the students had but usually it is fine. If this does happen and you don't have a limitation on
+                imports then just add the import and rerun that students file. The tool will not stop when it encounters
+                one of these errors so you will have to check each students output to make sure it ran correctly.
+HomeworkToPdf.sh: This script take in a homework directory as an argument, this directory is expected to be created by
+                  InitHWDir.sh, and turns all of the source files into pdfs.
+
+SourceToPdf.sh: Not sure why this one exists it seems to be a testing script to turn one file into a pdf.
+
+RunGrader.sh: This is the heart of the grader. It needs to be provided with a homework folder (setup by InitHWDir.sh) and 
+              the path to your config file. You can find a sample config file in Scripts/ConfigFiles this file allows you
+              to tell the grader how many points each unit test is worth. I am using hspec to write unit tests, hspec has 
+              a function describe that allows you to label blocks of tests. The string you give to describe must match the
+              testName field in the config file. Take a look at my Main.hs file in UnitTester for examples of how to write
+              unit tests. Under the unit tests you will see the delimiters that I use to paste in and delete the students
+              code each run. Note that you must comment out your answers before running the grader, but if you want to test
+              the unit tests you will need your code. My usual workflow was to take my source, write the unit tests, make sure
+              they work, comment out my code (not the unit tests), run the grader.
+
+You should need to worry much about any of the Haskell source files as they are only used by the scripts themselves.
+Feel free to contact me with any questions! I know this thing is not very user friendly currently so don't hesitate!

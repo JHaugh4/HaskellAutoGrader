@@ -1,0 +1,27 @@
+[
+    {
+        "testName": "5.1",
+        "numTests": 3,
+        "ptsPerTest": 15,
+        "specialCases":
+            {
+                "1":10
+            }
+    },
+    {
+        "testName": "5.2",
+        "numTests": 3,
+        "ptsPerTest": 10,
+        "specialCases": {}
+    },
+    {
+        "testName": "5.3",
+        "numTests": 3,
+        "ptsPerTest": 10,
+        "specialCases": 
+        {
+            "2": 5,
+            "3": 15
+        }
+    }
+]
